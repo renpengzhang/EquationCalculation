@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+
+    $.ajax({
+      url: '/calculateEquation',
+      type: 'GET',
+      data: {
+        equation1: $('#equation1').val(),
+        equation2: $('#equation2').val()
+      },
+      success: function(data){ 
+        var solution = JSON.parse(data)
+        $("#result").text("result:\xa0\xa0" + String.fromCharCode(solution[0].variable) + " = "+solution[0].coefficient
+                          + "\xa0\xa0\xa0" + String.fromCharCode(solution[1].variable) + " = "+solution[1].coefficient)
+      },
+      error: function(xhr, ajaxOptions, thrownError) {
+        $("#result").text("result: " + xhr.responseText)
+      }
+    });
+
+  });
+});
+</script>
+
+<body>
+<div>  
+  <label>equation1: </label><input id = "equation1" name="equation1" type="text" value="" />
+  <label>equation2: </label><input id = "equation2" name="equation2" type="text" value="" />
+  <button>Calculate</button>
+</div>
+  <p id="result"></p>
+<div> 
+
+</div>
+
+</body>
+</html>
