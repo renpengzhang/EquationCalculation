@@ -2,6 +2,43 @@
 <html>
 <head>
   <meta charset="UTF-8" />
+  <style>
+    html, body {
+        height: 100%;
+    }
+
+    html {
+        display: table;
+        margin: auto;
+    }
+
+    body {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    label, input, button, p{
+        font-size:larger;
+    }
+
+    input {
+      border-radius: 10px;
+    }
+
+    button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 12px;
+    }
+  </style>
 </head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -18,8 +55,8 @@ $(document).ready(function(){
       },
       success: function(data){ 
         var solution = JSON.parse(data)
-        $("#result").text("result:\xa0\xa0" + String.fromCharCode(solution[0].variable) + " = "+solution[0].coefficient
-                          + "\xa0\xa0\xa0" + String.fromCharCode(solution[1].variable) + " = "+solution[1].coefficient)
+        $("#result").text("Result:\xa0\xa0" + String.fromCharCode(solution[0].variable) + " = "+solution[0].coefficient.toFixed(2)
+                          + "\xa0\xa0\xa0" + String.fromCharCode(solution[1].variable) + " = "+solution[1].coefficient.toFixed(2))
       },
       error: function(xhr, ajaxOptions, thrownError) {
         $("#result").text("result: " + xhr.responseText)
@@ -31,14 +68,14 @@ $(document).ready(function(){
 </script>
 
 <body>
-<div>  
-  <label>equation1: </label><input id = "equation1" name="equation1" type="text" value="" />
-  <label>equation2: </label><input id = "equation2" name="equation2" type="text" value="" />
+<div style="text-align:center;">  
+  <label>Equation1: </label><input id = "equation1" name="equation1" type="text" value="" />
+  <br /><br />
+  <label>Equation2: </label><input id = "equation2" name="equation2" type="text" value="" />
+  <br /><br />
   <button>Calculate</button>
-</div>
-  <p id="result"></p>
-<div> 
-
+  <br />
+  <p id="result" style="font-size:25px;"></p>
 </div>
 
 </body>
