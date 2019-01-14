@@ -32,11 +32,13 @@ type Equation struct {
 // Init equation obj by parsing the input equation string
 func (equaiton *Equation) Init(eString string) error {
 	// Remove extra spaces
-	space := regexp.MustCompile(`\s+|\*`)
+	space := regexp.MustCompile(`\s+`)
 	eString = space.ReplaceAllString(eString, "")
 
-	// Detect empty string
-	if len(eString) == 0 {
+	// Check whether the input is valid equaiton string.
+	// The valid form should be Ax +/- By = C or Az = C
+	validEquation := regexp.MustCompile(`^[+-]?(([0-9]*[.])?[0-9]+)?[a-zA-Z]([+-](([0-9]*[.])?[0-9]+)?[a-zA-Z])?=([+-]?([0-9]*[.])?[0-9]+)$`)
+	if !validEquation.MatchString(eString) {
 		return errors.New("Invalid String")
 	}
 
