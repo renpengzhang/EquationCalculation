@@ -8,7 +8,7 @@ import (
 	"os"
 
 	"github.com/gorilla/mux"
-	"rez.com/EquationCalculation/equationSolver"
+	"github.com/renpengzhang/EquationCalculation/equationSolver"
 )
 
 // GetCalculation handles the calculation request
