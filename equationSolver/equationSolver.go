@@ -32,12 +32,12 @@ type Equation struct {
 // Init equation obj by parsing the input equation string
 func (equaiton *Equation) Init(eString string) error {
 	// Remove extra spaces
-	space := regexp.MustCompile(`\s+`)
+	space := regexp.MustCompile(`\s+|\*`)
 	eString = space.ReplaceAllString(eString, "")
 
 	// Detect empty string
 	if len(eString) == 0 {
-		return errors.New("Empty String")
+		return errors.New("Invalid String")
 	}
 
 	valueBeenSet := false
@@ -95,7 +95,7 @@ func Solve(equaiton1 *Equation, equaiton2 *Equation) ([]VariableAndValue, error)
 	if len(equaiton1.elements) == 1 && len(equaiton2.elements) == 1 {
 		// Case that both equations have only 1 variable and needed to be completed
 		if equaiton1.elements[0].Variable == equaiton2.elements[0].Variable {
-			return nil, errors.New("Not Match Equation")
+			return nil, errors.New("Equations Not Match")
 		} else {
 			equaiton1.elements = append(equaiton1.elements, VariableAndCoef{equaiton2.elements[0].Variable, 0})
 			equaiton2.elements = append(equaiton2.elements, VariableAndCoef{equaiton1.elements[0].Variable, 0})
@@ -134,7 +134,7 @@ func Solve(equaiton1 *Equation, equaiton2 *Equation) ([]VariableAndValue, error)
 
 	// Case that the variables' names are not matched
 	if (VC11.Variable != VC21.Variable) || (VC12.Variable != VC22.Variable) {
-		return nil, errors.New("Not Match Equation")
+		return nil, errors.New("Equations Not Match")
 	}
 
 	// Case that 2 equations are relative

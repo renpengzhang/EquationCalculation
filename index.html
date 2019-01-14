@@ -47,7 +47,7 @@ $(document).ready(function(){
   $("button").click(function(){
 
     $.ajax({
-      url: '/calculateEquation',
+      url: '/solution',
       type: 'GET',
       data: {
         equation1: $('#equation1').val(),
@@ -69,6 +69,7 @@ $(document).ready(function(){
 
 <body>
 <div style="text-align:center;">  
+  <p>Accept Equation like: Ax + By = C or Az = C</p>
   <label>Equation1: </label><input id = "equation1" name="equation1" type="text" value="" />
   <br /><br />
   <label>Equation2: </label><input id = "equation2" name="equation2" type="text" value="" />

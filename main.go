@@ -67,6 +67,6 @@ func main() {
 	// RESTful service
 	router := mux.NewRouter()
 	router.HandleFunc("/", Hello)
-	router.HandleFunc("/calculateEquation", GetCalculation).Methods("GET")
+	router.HandleFunc("/solution", GetCalculation).Methods("GET")
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
