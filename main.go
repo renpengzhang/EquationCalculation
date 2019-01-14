@@ -7,8 +7,9 @@ import (
 	"net/http"
 	"os"
 
+	"app/equationSolver"
+
 	"github.com/gorilla/mux"
-	"github.com/renpengzhang/EquationCalculation/equationSolver"
 )
 
 // GetCalculation handles the calculation request
